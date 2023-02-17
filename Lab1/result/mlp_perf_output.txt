@@ -1,0 +1,164 @@
+Loss and Accuracy on test set: [0.047869548201560974, 0.9225000143051147]
+
+ Performance counter stats for 'python3 mlp_keras.py 10':
+
+   416,087,705,517      instructions              #    0.65  insn per cycle           (62.73%)
+   638,847,332,767      cycles                                                        (62.75%)
+   133,336,031,396      L1-dcache-loads                                               (62.48%)
+    19,676,504,326      L1-dcache-load-misses     #   14.76% of all L1-dcache accesses  (62.63%)
+     2,930,236,361      LLC-loads                                                     (62.56%)
+     1,482,325,967      LLC-load-misses           #   50.59% of all LL-cache accesses  (49.84%)
+    40,413,386,468      branches                                                      (50.09%)
+       994,898,911      branch-misses             #    2.46% of all branches          (49.97%)
+
+      75.722979852 seconds time elapsed
+
+     227.724737000 seconds user
+      44.207110000 seconds sys
+
+
+Loss and Accuracy on test set: [0.04978896677494049, 0.9301999807357788]
+
+ Performance counter stats for 'python3 mlp_keras.py 1':
+
+   404,107,508,341      instructions              #    0.65  insn per cycle           (62.55%)
+   619,087,709,960      cycles                                                        (62.62%)
+   129,280,654,928      L1-dcache-loads                                               (62.60%)
+    18,955,232,774      L1-dcache-load-misses     #   14.66% of all L1-dcache accesses  (62.52%)
+     2,842,410,433      LLC-loads                                                     (62.39%)
+     1,469,038,230      LLC-load-misses           #   51.68% of all LL-cache accesses  (49.96%)
+    39,211,367,423      branches                                                      (50.10%)
+       954,327,152      branch-misses             #    2.43% of all branches          (50.10%)
+
+      69.533492195 seconds time elapsed
+
+     224.125740000 seconds user
+      41.603685000 seconds sys
+
+
+Loss and Accuracy on test set: [0.0487603098154068, 0.916100025177002]
+
+ Performance counter stats for 'python3 mlp_keras.py 1101':
+
+   901,777,715,299      instructions              #    0.67  insn per cycle           (62.56%)
+ 1,340,099,944,244      cycles                                                        (62.52%)
+   299,027,235,712      L1-dcache-loads                                               (62.50%)
+    50,814,130,191      L1-dcache-load-misses     #   16.99% of all L1-dcache accesses  (62.58%)
+    11,354,962,079      LLC-loads                                                     (62.54%)
+     3,892,585,793      LLC-load-misses           #   34.28% of all LL-cache accesses  (49.98%)
+    72,796,530,934      branches                                                      (49.97%)
+     1,230,200,103      branch-misses             #    1.69% of all branches          (50.02%)
+
+     128.189114824 seconds time elapsed
+
+     534.558654000 seconds user
+      65.835475000 seconds sys
+      
+      
+Loss and Accuracy on test set: [0.04576900973916054, 0.9269999861717224]
+
+ Performance counter stats for 'python3 mlp_keras.py 10':
+
+   381,059,318,875      instructions:u            #    0.72  insn per cycle           (62.88%)
+   527,680,567,165      cycles:u                                                      (62.77%)
+   123,742,697,110      L1-dcache-loads                                               (62.91%)
+    18,198,619,726      L1-dcache-load-misses     #   14.71% of all L1-dcache accesses  (62.45%)
+     2,647,205,617      LLC-loads                                                     (62.24%)
+     1,438,852,667      LLC-load-misses           #   54.35% of all LL-cache accesses  (49.78%)
+    33,772,218,614      branches:u                                                    (49.90%)
+       906,554,549      branch-misses:u           #    2.68% of all branches          (50.27%)
+
+      71.947549379 seconds time elapsed
+
+     228.465384000 seconds user
+      43.344403000 seconds sys
+
+
+Loss and Accuracy on test set: [0.04907762259244919, 0.9329000115394592]
+
+ Performance counter stats for 'python3 mlp_keras.py 1':
+
+   367,812,569,381      instructions:u            #    0.72  insn per cycle           (62.41%)
+   512,537,717,078      cycles:u                                                      (62.76%)
+   119,232,967,840      L1-dcache-loads                                               (62.88%)
+    17,640,331,676      L1-dcache-load-misses     #   14.79% of all L1-dcache accesses  (62.71%)
+     2,586,225,598      LLC-loads                                                     (62.51%)
+     1,438,666,463      LLC-load-misses           #   55.63% of all LL-cache accesses  (49.66%)
+    32,456,534,847      branches:u                                                    (49.90%)
+       847,548,005      branch-misses:u           #    2.61% of all branches          (49.92%)
+
+      69.491395434 seconds time elapsed
+
+     226.339542000 seconds user
+      39.832944000 seconds sys
+
+
+Loss and Accuracy on test set: [0.04731077328324318, 0.9205999970436096]
+
+ Performance counter stats for 'python3 mlp_keras.py 1101':
+
+   845,455,414,006      instructions:u            #    0.72  insn per cycle           (62.58%)
+ 1,171,695,111,256      cycles:u                                                      (62.49%)
+   283,535,026,008      L1-dcache-loads                                               (62.41%)
+    48,757,390,494      L1-dcache-load-misses     #   17.20% of all L1-dcache accesses  (62.47%)
+    10,985,429,037      LLC-loads                                                     (62.56%)
+     3,873,938,185      LLC-load-misses           #   35.26% of all LL-cache accesses  (50.05%)
+    62,683,193,584      branches:u                                                    (50.08%)
+     1,085,642,721      branch-misses:u           #    1.73% of all branches          (50.03%)
+
+     128.924274664 seconds time elapsed
+
+     538.092940000 seconds user
+      60.016785000 seconds sys
+      
+      
+ Performance counter stats for 'python3 mlp_keras.py 10':
+
+                20      fp_arith_inst_retired.128b_packed_double                                     (66.76%)
+         2,468,146      fp_arith_inst_retired.128b_packed_single                                     (66.88%)
+                30      fp_arith_inst_retired.256b_packed_double                                     (66.66%)
+   169,678,290,813      fp_arith_inst_retired.256b_packed_single                                     (66.57%)
+        21,073,479      fp_arith_inst_retired.scalar_double                                     (66.65%)
+        14,964,175      fp_arith_inst_retired.scalar_single                                     (66.66%)
+
+      70.796308071 seconds time elapsed
+
+     228.804870000 seconds user
+      41.386675000 seconds sys
+
+
+Loss and Accuracy on test set: [0.04765160009264946, 0.9354000091552734]
+
+ Performance counter stats for 'python3 mlp_keras.py 1':
+
+                17      fp_arith_inst_retired.128b_packed_double                                     (66.74%)
+         2,523,832      fp_arith_inst_retired.128b_packed_single                                     (66.54%)
+                12      fp_arith_inst_retired.256b_packed_double                                     (66.61%)
+   165,962,681,021      fp_arith_inst_retired.256b_packed_single                                     (66.82%)
+        17,419,978      fp_arith_inst_retired.scalar_double                                     (66.70%)
+        14,464,539      fp_arith_inst_retired.scalar_single                                     (66.69%)
+
+      69.708144434 seconds time elapsed
+
+     226.113105000 seconds user
+      38.516494000 seconds sys
+
+
+79/79 [==============================] - 0s 5ms/step - loss: 0.0495 - accuracy: 0.9153
+Loss and Accuracy on test set: [0.049549903720617294, 0.9153000116348267]
+
+ Performance counter stats for 'python3 mlp_keras.py 1101':
+
+                16      fp_arith_inst_retired.128b_packed_double                                     (66.70%)
+         2,482,409      fp_arith_inst_retired.128b_packed_single                                     (66.62%)
+                13      fp_arith_inst_retired.256b_packed_double                                     (66.53%)
+   432,463,632,863      fp_arith_inst_retired.256b_packed_single                                     (66.72%)
+        33,058,432      fp_arith_inst_retired.scalar_double                                     (66.79%)
+        16,455,908      fp_arith_inst_retired.scalar_single                                     (66.68%)
+
+     127.083683778 seconds time elapsed
+
+     528.115511000 seconds user
+      69.559295000 seconds sys
+
+

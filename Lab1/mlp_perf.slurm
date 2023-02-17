@@ -35,14 +35,16 @@
 
 module load python3
 source $WORK/Lab1A_virtualenv/bin/activate
-mkdir -p $WORK/Lab1A/output
+mkdir -p $WORK/HRDWR-ARCH-4-ML/Lab1/output_perf
 #sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
+curr_path=$WORK/HRDWR-ARCH-4-ML/Lab1
+echo ${curr_path}
 for code in 1 10 1101
 do
-    perf stat -e instructions,cycles,L1-dcache-loads,L1-dcache-load-misses,LLC-loads,LLC-load-misses,branches,branch-misses python3 mlp_keras.py ${code} >> $WORK/Lab1/Lab1A/output/out_cnn_${code}
-    perf stat -e instructions:u,cycles:u,L1-dcache-loads:u,L1-dcache-load-misses:u,LLC-loads:u,LLC-load-misses:u,branches:u,branch-misses:u python3 mlp_keras.py ${code} >> $WORK/Lab1/Lab1A/output/out_cnn_${code}
-    perf stat -e mem_inst_retired.all_loads,mem_inst_retired.all_stores,br_inst_retired.all_branches python3 mlp_keras.py ${code} >> $WORK/Lab1/Lab1A/output/out_cnn_${code}
-    perf stat -e fp_arith_inst_retired.128b_packed_double,fp_arith_inst_retired.128b_packed_single,fp_arith_inst_retired.256b_packed_double,fp_arith_inst_retired.256b_packed_single,fp_arith_inst_retired.scalar_double,fp_arith_inst_retired.scalar_single python3 mlp_keras.py ${code} >> $WORK/Lab1/Lab1A/output/out_cnn_${code}
+    perf stat -e instructions,cycles,L1-dcache-loads,L1-dcache-load-misses,LLC-loads,LLC-load-misses,branches,branch-misses python3 ${curr_path}/mlp_keras.py ${code} >> ${curr_path}/output_perf/out_mlp_${code}
+    perf stat -e instructions:u,cycles:u,L1-dcache-loads:u,L1-dcache-load-misses:u,LLC-loads:u,LLC-load-misses:u,branches:u,branch-misses:u python3 ${curr_path}mlp_keras.py ${code} >> ${curr_path}/output_perf/out_mlp_${code}
+    perf stat -e mem_inst_retired.all_loads,mem_inst_retired.all_stores,br_inst_retired.all_branches python3 ${curr_path}/mlp_keras.py ${code} >> ${curr_path}/output_perf/out_mlp_${code}
+    perf stat -e fp_arith_inst_retired.128b_packed_double,fp_arith_inst_retired.128b_packed_single,fp_arith_inst_retired.256b_packed_double,fp_arith_inst_retired.256b_packed_single,fp_arith_inst_retired.scalar_double,fp_arith_inst_retired.scalar_single python3 ${curr_path}/mlp_keras.py ${code} >> ${curr_path}/output_perf/out_mlp_${code}
 done
 
 

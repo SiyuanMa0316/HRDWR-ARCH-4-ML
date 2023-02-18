@@ -85,7 +85,7 @@ def use_model(code = ''):
             x_train_reshaped,
             y_train_one_hot,
             epochs=10,
-            batch_size=32,
+            batch_size=1024,
             validation_split=0.75
             )
     

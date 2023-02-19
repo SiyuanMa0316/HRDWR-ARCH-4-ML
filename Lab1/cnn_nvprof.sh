@@ -41,7 +41,7 @@ output_path=${home_path}/output_nvprof
 mkdir -p ${output_path}
 
 # Launch serial code...
-for code in 1 10 1101
+for code in 000 0010 100
 do
     nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_inst_executed --openacc-profiling off --metrics inst_executed python3 ${home_path}/cnn_keras.py ${code}
     nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_ipc --openacc-profiling off --metrics ipc python3 ${home_path}/cnn_keras.py ${code}
@@ -49,5 +49,9 @@ do
     nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_inst_integer --openacc-profiling off --metrics inst_integer python3 ${home_path}/cnn_keras.py ${code}
     nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_inst_fp_64 --openacc-profiling off --metrics inst_fp_64 python3 ${home_path}/cnn_keras.py ${code}
     nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_inst_fp_32 --openacc-profiling off --metrics inst_fp_32 python3 ${home_path}/cnn_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_cf_fu_utilization --openacc-profiling off --metrics cf_fu_utilization python3 ${home_path}/cnn_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_double_precision_fu_utilization --openacc-profiling off --metrics double_precision_fu_utilization python3 ${home_path}/cnn_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_special_fu_utilization --openacc-profiling off --metrics special_fu_utilization python3 ${home_path}/cnn_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/cnn_nvprof_${code}_single_precision_fu_utilization --openacc-profiling off --metrics single_precision_fu_utilization python3 ${home_path}/cnn_keras.py ${code}
 done
 # ---------------------------------------------------

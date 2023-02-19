@@ -1,11 +1,11 @@
 #!/bin/bash
 
-
+source /home/siyuan/HRDWR-ARCH-4-ML/Lab1A_virtualenv/bin/activate
 sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
 curr_path=/home/siyuan/HRDWR-ARCH-4-ML/Lab1
 mkdir -p ${curr_path}/output_perf
 #echo ${curr_path}
-for code in 1 10 1101
+for code in 000 0010 100
 do
     perf stat -o ${curr_path}/output_perf/out_cnn_${code} --append -e instructions,cycles,L1-dcache-loads,L1-dcache-load-misses,LLC-loads,LLC-load-misses,branches,branch-misses python3 ${curr_path}/cnn_keras.py ${code}
     perf stat -o ${curr_path}/output_perf/out_cnn_${code} --append -e instructions:u,cycles:u,L1-dcache-loads:u,L1-dcache-load-misses:u,LLC-loads:u,LLC-load-misses:u,branches:u,branch-misses:u python3 ${curr_path}cnn_keras.py ${code}

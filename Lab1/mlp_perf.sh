@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+source /home/siyuan/HRDWR-ARCH-4-ML/Lab1A_virtualenv/bin/activate
 sudo sh -c 'echo 1 >/proc/sys/kernel/perf_event_paranoid'
 curr_path=/home/siyuan/HRDWR-ARCH-4-ML/Lab1
 mkdir -p ${curr_path}/output_perf

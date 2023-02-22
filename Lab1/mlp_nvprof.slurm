@@ -56,14 +56,15 @@ do
     #nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_double_precision_fu_utilization --openacc-profiling off --metrics double_precision_fu_utilization python3 ${home_path}/mlp_keras.py ${code}
     #nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_special_fu_utilization --openacc-profiling off --metrics special_fu_utilization python3 ${home_path}/mlp_keras.py ${code}
     #nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_single_precision_fu_utilization --openacc-profiling off --metrics single_precision_fu_utilization python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_dram_read_transactions --metrics dram_read_transactions python ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_dram_write_transaction --metrics dram_write_transaction python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_global_loads --metrics inst_executed_global_loads python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_local_loads --metrics inst_executed_local_loads python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_shared_loads --metrics inst_executed_shared_loads python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_surface_loads --metrics inst_executed_surface_loads python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_global_stores --metrics inst_executed_global_stores python3 ${home_path}/mlp_keras.py ${code}
-    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_local_stores --metrics inst_executed_local_stores python3 ${home_path}/mlp_keras.py ${code}
-
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_dram_read_transactions --metrics dram_read_transactions python ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_dram_write_transaction --metrics dram_write_transaction python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_global_loads --metrics inst_executed_global_loads python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_local_loads --metrics inst_executed_local_loads python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_shared_loads --metrics inst_executed_shared_loads python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_surface_loads --metrics inst_executed_surface_loads python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_global_stores --metrics inst_executed_global_stores python3 ${home_path}/mlp_keras.py ${code}
+    # nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_inst_executed_local_stores --metrics inst_executed_local_stores python3 ${home_path}/mlp_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_dram_read_throughput --openacc-profiling off --metrics dram_read_throughput python3 ${home_path}/mlp_keras.py ${code}
+    nvprof --csv --log-file ${output_path}/mlp_nvprof_${code}_stall_memory_throttle --openacc-profiling off --metrics stall_memory_throttle python3 ${home_path}/mlp_keras.py ${code}
 done
 # ---------------------------------------------------

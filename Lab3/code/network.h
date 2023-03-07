@@ -526,20 +526,20 @@ int Network<T>::conv_convert_stream(int layer_id, int padding, int stride, Strea
     int op_h = (ip_h+2*padding-k_w)/stride + 1;
     int op_mat_h = op_w * op_h;
     int buffer_row_start = 0;
-    std::cout<<"ip_h="<<ip_h<<", ip_w="<<ip_w<<std::endl;
-    std::cout<<"padding="<<padding<<std::endl;
-    std::cout<<"stride="<<stride<<std::endl;
-    std::cout<<"op_h="<<op_h<<", op_w="<<op_w<<std::endl;
-    std::cout<<"op_mat_h="<<op_mat_h<<", op_mat_w="<<op_mat_w<<std::endl;
+    // std::cout<<"ip_h="<<ip_h<<", ip_w="<<ip_w<<std::endl;
+    // std::cout<<"padding="<<padding<<std::endl;
+    // std::cout<<"stride="<<stride<<std::endl;
+    // std::cout<<"op_h="<<op_h<<", op_w="<<op_w<<std::endl;
+    // std::cout<<"op_mat_h="<<op_mat_h<<", op_mat_w="<<op_mat_w<<std::endl;
     for(int b=0; b<ip_w*ip_c*k_h; b++){
         buffer[b] = input.read();
-        std::cout<<std::to_string(buffer[b])<<" ";
-        std::cout.flush();
+        // std::cout<<std::to_string(buffer[b])<<" ";
+        // std::cout.flush();
     }
-    std::cout<<std::endl;
+    //std::cout<<std::endl;
     
     for(int i=0; i<op_mat_h; i++){
-        std::cout<<"window_x="<<(i/op_w)*stride - padding<<std::endl;
+        //std::cout<<"window_x="<<(i/op_w)*stride - padding<<std::endl;
         for(int j=0; j<op_mat_w; j++){
             int channel = j%k_c;
             int row_in_k = j/(k_c*k_w);
@@ -554,11 +554,11 @@ int Network<T>::conv_convert_stream(int layer_id, int padding, int stride, Strea
                 }
                 for(int b=ip_w*ip_c*(k_h-1); b<ip_w*ip_c*k_h; b++){
                     buffer[b] = input.read();
-                    std::cout<<std::to_string(buffer[b])<<" ";
-                    std::cout.flush();
+                    // std::cout<<std::to_string(buffer[b])<<" ";
+                    // std::cout.flush();
                 }
-                std::cout<<std::endl;
-                std::cout.flush();
+                // std::cout<<std::endl;
+                // std::cout.flush();
                 buffer_row_start++;
             }
 

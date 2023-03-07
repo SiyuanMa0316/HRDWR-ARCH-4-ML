@@ -398,13 +398,13 @@ int Network<T>::conv_convert(int layer_id, int padding, int stride, Array3D<T>& 
     
     for (int i = 0; i < num_filters; i++)
     {
-        for (int j = 0; j < num_k_channels; j++)
+        for (int m = 0; m < k_height; m++)
         {
-            for (int m = 0; m < k_height; m++)
+            for (int n = 0; n < k_width; n++)
             {
-                for (int n = 0; n < k_width; n++)
+                for (int j = 0; j < num_k_channels; j++)
                 {
-                    row[j*k_width*k_height + m*k_width + n] = initial_kernel[i][m][n][j]; 
+                    row[m*k_width*k_height + n*k_width + j] = initial_kernel[i][m][n][j]; 
                 } 
             } 
         }
@@ -451,6 +451,7 @@ int Network<T>::conv_convert(int layer_id, int padding, int stride, Array3D<T>& 
     int op_width = ((ip_width - k_width + 2*padding)/stride) + 1;
     int op_height = ((ip_height - k_height + 2*padding)/stride) + 1;
 
+    Array2D<T> input_matrix_temp(op_width*op_height, k_width*k_height*ip_channels);
     input_matrix.resize(op_width*op_height, k_width*k_height*ip_channels);
 
     for (int j = 0; j < ip_channels; j++)
@@ -480,9 +481,24 @@ int Network<T>::conv_convert(int layer_id, int padding, int stride, Array3D<T>& 
                         for (int y = 0; y < k_width; y++)
                         {
                             temp = window[x][y];
-                            input_matrix[index-1][j*k_height*k_width + x*k_height + y] = temp;
+                            input_matrix_temp[index-1][j*k_height*k_width + x*k_height + y] = temp;
                         }
                     }
+                }
+            }
+        }
+    }
+
+    // get result according to reference
+    for (int t = 0; t < op_width*op_height; t++)
+    {
+        for (int p = 0; p < k_height; p++)
+        {
+            for (int q = 0; q < k_width; q++)
+            {
+                for (int c = 0; c < ip_channels; c++)
+                {
+                    input_matrix[t][p*k_height*k_width + q*k_width + c] = input_matrix_temp[t][c*k_height*k_height + p*k_height + q];
                 }
             }
         }
@@ -497,7 +513,64 @@ int Network<T>::conv_convert_stream(int layer_id, int padding, int stride, Strea
     T buffer[buffer_size];
     /* Part III */
     /*Write your code here*/
-    for(int ip_mat_row=0; ip_mat_row<)
+    
+    int k_w = kernel_size[layer_id];
+    int k_h = kernel_size[layer_id];
+    int k_c = kernel_channel[layer_id];
+    int op_mat_w=k_c * k_w * k_h;
+     // calculate input feature matrix
+    int ip_h = input_height[layer_id];
+    int ip_w = input_width[layer_id];    
+    int ip_c = input_channel[layer_id];
+    int op_w = (ip_w+2*padding-k_w)/stride + 1;
+    int op_h = (ip_h+2*padding-k_w)/stride + 1;
+    int op_mat_h = op_w * op_h;
+    int buffer_row_start = 0;
+    std::cout<<"ip_h="<<ip_h<<", ip_w="<<ip_w<<std::endl;
+    std::cout<<"padding="<<padding<<std::endl;
+    std::cout<<"stride="<<stride<<std::endl;
+    std::cout<<"op_h="<<op_h<<", op_w="<<op_w<<std::endl;
+    std::cout<<"op_mat_h="<<op_mat_h<<", op_mat_w="<<op_mat_w<<std::endl;
+    for(int b=0; b<ip_w*ip_c*k_h; b++){
+        buffer[b] = input.read();
+        std::cout<<std::to_string(buffer[b])<<" ";
+        std::cout.flush();
+    }
+    std::cout<<std::endl;
+    
+    for(int i=0; i<op_mat_h; i++){
+        std::cout<<"window_x="<<(i/op_w)*stride - padding<<std::endl;
+        for(int j=0; j<op_mat_w; j++){
+            int channel = j%k_c;
+            int row_in_k = j/(k_c*k_w);
+            int col_in_k = (j%(k_c*k_w))/k_c;
+            int window_x = (i/op_w)*stride - padding;
+            
+            while(window_x+k_h>buffer_row_start+k_h){
+                //shift row 1,... into row 0,...
+                //bring in 1 row from input to the last row of buffer
+                for(int b=0; b<ip_w*ip_c*(k_h-1); b++){
+                    buffer[b] = buffer[b+ip_w*ip_c];
+                }
+                for(int b=ip_w*ip_c*(k_h-1); b<ip_w*ip_c*k_h; b++){
+                    buffer[b] = input.read();
+                    std::cout<<std::to_string(buffer[b])<<" ";
+                    std::cout.flush();
+                }
+                std::cout<<std::endl;
+                std::cout.flush();
+                buffer_row_start++;
+            }
+
+            int window_y = (i%op_w)*stride - padding;
+            int pos_channel = channel;
+            int pos_col = col_in_k + window_y;
+            int pos_row = row_in_k + window_x;
+            int buffer_row_offset = pos_row - buffer_row_start;
+            bool is_pad = pos_col<0 || pos_col>=ip_w || pos_row<0 || pos_row>=ip_h;
+            output.write(is_pad?0:buffer[buffer_row_offset*ip_w*ip_c + pos_col*ip_c +pos_channel]);
+        }
+    }
     return 0;
 }
 

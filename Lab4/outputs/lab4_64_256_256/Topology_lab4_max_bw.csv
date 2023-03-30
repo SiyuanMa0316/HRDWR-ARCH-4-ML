@@ -1,3 +1,0 @@
-IFMAP SRAM Size,	Filter SRAM Size,	OFMAP SRAM Size,	Conv Layer Num,	Max DRAM IFMAP Read BW,	Max DRAM Filter Read BW,	Max DRAM OFMAP Write BW,	Max SRAM Read BW,	Max SRAM OFMAP Write BW,
-65536,	262144,	262144,	Conv1,	52,	10,	87,	512,	96,
-65536,	262144,	262144,	Conv2,	10,	74,	10,	512,	256,

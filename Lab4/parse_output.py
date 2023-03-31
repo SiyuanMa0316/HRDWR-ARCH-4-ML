@@ -5,7 +5,7 @@ import pandas as pd
 # define grids
 ArrayHeight = 256
 ArrayWidth = 256
-IfmapSramSz = [32, 64, 128, 256, 512, 1024, 2048]
+IfmapSramSz = [32, 64]
 FilterSramSz = [32, 64, 128, 256, 512, 1024, 2048]
 OfmapSramSz = [32, 64, 128, 256, 512, 1024, 2048]
 IfmapOffset = 0
@@ -49,7 +49,7 @@ for i in IfmapSramSz:
                 name = str(foldername)+"Topology_lab4_max_bw.csv"
                 df = pd.read_csv(name)
                 # constraint 2
-                if ( (df['\tMax DRAM IFMAP Read BW'][0]<20) and (df['\tMax DRAM Filter Read BW'][0]<20) and (df['\tMax DRAM OFMAP Write BW'][0]<20) and (df['\tMax DRAM IFMAP Read BW'][1])<20 and (df['\tMax DRAM Filter Read BW'][1]<20) and (df['\tMax DRAM OFMAP Write BW'][1]<20)):
+                if ( (df['\tMax DRAM IFMAP Read BW'][0]<=20) and (df['\tMax DRAM Filter Read BW'][0]<=20) and (df['\tMax DRAM OFMAP Write BW'][0]<=20) and (df['\tMax DRAM IFMAP Read BW'][1])<=20 and (df['\tMax DRAM Filter Read BW'][1]<=20) and (df['\tMax DRAM OFMAP Write BW'][1]<=20)):
                     conf_ArrHeight.append(ArrayHeight)
                     conf_ArrWidth.append(ArrayWidth)
                     conf_IfmapSramSz.append(i)
@@ -80,7 +80,7 @@ for i in IfmapSramSz:
                     conv2_DRAM_OFMAP_Write_BW.append(df['\tDRAM OFMAP Write BW'][1])
                 
                     # cost 
-                    cost = conv1_cycles[index]*(conv1_DRAM_IFMAP_Read_BW[index]+conv1_DRAM_Filter_Read_BW[index]+conv1_DRAM_OFMAP_Write_BW[index]) + conv2_cycles[index]*(conv2_DRAM_IFMAP_Read_BW[index]+conv2_DRAM_Filter_Read_BW[index]+conv2_DRAM_OFMAP_Write_BW[index])
+                    cost.append(conv1_cycles[index]*(conv1_DRAM_IFMAP_Read_BW[index]+conv1_DRAM_Filter_Read_BW[index]+conv1_DRAM_OFMAP_Write_BW[index]) + conv2_cycles[index]*(conv2_DRAM_IFMAP_Read_BW[index]+conv2_DRAM_Filter_Read_BW[index]+conv2_DRAM_OFMAP_Write_BW[index]))
                 
                     index+=1
             
@@ -109,7 +109,7 @@ output_df = pd.DataFrame(
         'cost': cost
     })
    
-output_df.to_csv('output.csv')
+output_df.to_csv('output2.csv')
 
 '''print(conv1_Max_DRAM_IFMAP_Read_BW)
 print(conv1_Max_DRAM_Filter_Read_BW)
